@@ -1,4 +1,4 @@
-FROM kalilinux/kali-rolling
+FROM linux:latest
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TERM xterm-256color
 RUN apt-get update && apt upgrade -y && apt-get install sudo -y
