@@ -1,6 +1,8 @@
 FROM ubuntu:latest
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TERM xterm-256color
+ENV DEBIAN_FRONTEND noninteractive
+ENV DBUS_SESSION_BUS_ADDRESS=/dev/null
 RUN apt-get update && apt upgrade -y && apt-get install sudo -y
 
 RUN apt-get install -y\
@@ -192,9 +194,6 @@ RUN cd /root && \
 #    echo "command=/usr/bin/dbus-daemon --system --nofork" >> /etc/supervisor/conf.d/dbus-daemon.conf && \
 #    echo "process_name = dbus-daemon" >> /etc/supervisor/conf.d/dbus-daemon.conf && \
 #    echo "user = messagebus"  >> /etc/supervisor/conf.d/dbus-daemon.conf
-RUN git clone https://github.com/StarkGang/docker-ubuntu-xrdp-mate-custom
-RUN cd docker-ubuntu-xrdp-mate-custom
-RUN ["bash", "autostartup.sh"]
 RUN apt-get autoremove --purge
 RUN pip3 install --upgrade pip setuptools 
 RUN pip3 install --upgrade pip
@@ -204,6 +203,9 @@ RUN rm -r /root/.cache
 RUN axel https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && apt install -y ./google-chrome-stable_current_amd64.deb && rm google-chrome-stable_current_amd64.deb
 RUN axel https://chromedriver.storage.googleapis.com/88.0.4324.96/chromedriver_linux64.zip && unzip chromedriver_linux64.zip && chmod +x chromedriver && mv -f chromedriver /usr/bin/ && rm chromedriver_linux64.zip
 RUN wget -O opencv.zip https://github.com/opencv/opencv/archive/master.zip && unzip opencv.zip && mv -f opencv-master /usr/bin/ && rm opencv.zip
+RUN git clone https://github.com/StarkGang/docker-ubuntu-xrdp-mate-custom
+RUN cd docker-ubuntu-xrdp-mate-custom
+RUN ["bash", "autostartup.sh"]
 RUN git clone https://github.com/DevsExpo/FridayUserbot /root/fridaybot
 RUN mkdir /root/fridaybot/bin/
 WORKDIR /root/fridaybot/
