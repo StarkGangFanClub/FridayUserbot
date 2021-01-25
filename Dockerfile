@@ -60,9 +60,10 @@ RUN axel https://chromedriver.storage.googleapis.com/88.0.4324.96/chromedriver_l
 RUN wget -O opencv.zip https://github.com/opencv/opencv/archive/master.zip && unzip opencv.zip && mv -f opencv-master /usr/bin/ && rm opencv.zip
 RUN git clone https://github.com/DevsExpo/FridayUserbot /root/fridaybot
 RUN echo Life Could Be Dream
-RUN git clone https://github.com/DevsExpo/FridayUserbot /root/fridaybot
+RUN echo Lick my pussy
 RUN mkdir /root/fridaybot/bin/
 WORKDIR /root/fridaybot/
 RUN chmod +x /usr/local/bin/*
 RUN pip3 install -r requirements.txt
+RUN echo Friday
 CMD ["bash","start.sh"]
