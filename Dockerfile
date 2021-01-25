@@ -34,6 +34,7 @@ RUN apt-get install -y\
     mediainfo \
     wget \
     python3 \
+    git \
     python3-dev \
     python3-pip \
     libreadline-dev \
@@ -85,6 +86,7 @@ RUN cd /root && \
         pulseaudio && \
     apt-get install --no-install-recommends -yqq \
         supervisor \
+        git \
         sudo \
         tzdata \
         vim \
